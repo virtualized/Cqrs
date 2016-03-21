@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace Cqrs.Connections.Dapper
 {
@@ -65,6 +66,11 @@ namespace Cqrs.Connections.Dapper
         public int Execute(string sql, object param = null)
         {
             return connection.Execute(sql, param, null, default(int?), CommandType.Text);
+        }
+
+        public Task<IEnumerable<TResult>> QueryAsync<TResult>(string sql, object param = null)
+        {
+            return connection.QueryAsync<TResult>(sql, param);
         }
     }
 }

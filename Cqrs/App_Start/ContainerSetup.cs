@@ -1,7 +1,4 @@
-﻿//using Cqrs.Application.Query.Handlers;
-//using Cqrs.Infrastructure.Dapper;
-using Cqrs.Application.Queries;
-using Cqrs.Application.Queries.Handlers;
+﻿using Cqrs.Application.Queries.Handlers;
 using Cqrs.Connections;
 using Cqrs.Connections.Dapper;
 using Cqrs.Querying;
@@ -23,14 +20,8 @@ namespace Cqrs
         {
             container.Register(typeof(IConnectionFactory), typeof(DapperConnectionFactory));
             container.Register(typeof(IQueryHandler<,>), new[] { typeof(FindUsersBySearchTextQueryHandler).Assembly });
+            container.Register(typeof(IAsyncQueryHandler<,>), new[] { typeof(FindUsersBySearchTextAsyncQueryHandler).Assembly });
         }
-
-        //private static void RegisterQueryComponents(Container container)
-        //{
-        //    container.Register<IDapperConnectionFactory, DapperConnectionFactory>();
-        //    container.Register(typeof(IQueryHandler<,>), new[] { typeof(IQueryHandler<,>).Assembly });
-        //    container.Register(typeof(IAsyncQueryHandler<,>), new[] { typeof(IAsyncQueryHandler<,>).Assembly });
-        //}
 
         private static void RegisterConfigurationComponents(Container container)
         {
