@@ -23,4 +23,24 @@ namespace Cqrs.Application.Query.Handlers
             }
         }
     }
+
+    public class GetCustomersByNameQueryHandler : IQueryHandler<CustomersDto, GetCustomersByNameQuery>
+    {
+        private readonly IDapperConnectionFactory dapperConnectionFactory;
+
+        public GetCustomersByNameQueryHandler(IDapperConnectionFactory dapperConnectionFactory)
+        {
+            this.dapperConnectionFactory = dapperConnectionFactory;
+        }
+
+        public CustomersDto Handle(GetCustomersByNameQuery query)
+        {
+            using (var connection = dapperConnectionFactory.CreateConnection())
+            {
+                connection.Open();
+                var customers = connection.Query<CustomerDto>("SELECT * FROM Customers WHERE Name LIKE @Name", new { Name = query.Name });
+                return new CustomersDto { Customers = customers };
+            }
+        }
+    }
 }
