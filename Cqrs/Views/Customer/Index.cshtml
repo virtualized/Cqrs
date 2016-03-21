@@ -1,5 +1,12 @@
-﻿@{
+﻿@model Cqrs.ViewModels.CustomersViewModel
+
+@{
     ViewBag.Title = "Index";
 }
 
 <h2>@ViewBag.Title</h2>
+
+@foreach (var customer in Model.Data.Customers)
+{
+    @customer.Name
+}

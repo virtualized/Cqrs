@@ -150,8 +150,22 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CustomersViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Cqrs.Application.Query\Cqrs.Application.Query.csproj">
+      <Project>{122cd4f3-48f8-4e10-808e-ab84debf7550}</Project>
+      <Name>Cqrs.Application.Query</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cqrs.Infrastructure.Dapper\Cqrs.Infrastructure.Dapper.csproj">
+      <Project>{5b0c96af-4adf-4c08-91ab-f03d2a58be03}</Project>
+      <Name>Cqrs.Infrastructure.Dapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cqrs.Infrastructure.Dto\Cqrs.Infrastructure.Dto.csproj">
+      <Project>{78db7f81-29aa-4a2b-b126-4b021236daa1}</Project>
+      <Name>Cqrs.Infrastructure.Dto</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
