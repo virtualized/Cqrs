@@ -25,6 +25,7 @@ namespace Cqrs.Tools.DatabaseCreator
                 dapperConnection.Execute("IF NOT EXISTS(SELECT * FROM Customers WHERE Name = 'James') INSERT INTO Customers (Name) VALUES ('James')");
             }
             Console.WriteLine("Database created!");
+            Console.WriteLine("Press any key to continue...");
 
             Console.ReadLine();
         }
