@@ -119,6 +119,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Views\User\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -145,6 +146,7 @@
   <ItemGroup>
     <Compile Include="App_Start\ContainerSetup.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -153,17 +155,25 @@
     <Compile Include="ViewModels\CustomersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cqrs.Application.Query\Cqrs.Application.Query.csproj">
-      <Project>{122cd4f3-48f8-4e10-808e-ab84debf7550}</Project>
-      <Name>Cqrs.Application.Query</Name>
+    <ProjectReference Include="..\Cqrs.Application.Domain\Cqrs.Application.Domain.csproj">
+      <Project>{03d56032-eaef-49d1-9887-856d3148e9c0}</Project>
+      <Name>Cqrs.Application.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Cqrs.Infrastructure.Dapper\Cqrs.Infrastructure.Dapper.csproj">
-      <Project>{5b0c96af-4adf-4c08-91ab-f03d2a58be03}</Project>
-      <Name>Cqrs.Infrastructure.Dapper</Name>
+    <ProjectReference Include="..\Cqrs.Application.Queries\Cqrs.Application.Queries.csproj">
+      <Project>{c372c224-e888-4b42-a679-ec64fe6b0b0c}</Project>
+      <Name>Cqrs.Application.Queries</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Cqrs.Infrastructure.Dto\Cqrs.Infrastructure.Dto.csproj">
-      <Project>{78db7f81-29aa-4a2b-b126-4b021236daa1}</Project>
-      <Name>Cqrs.Infrastructure.Dto</Name>
+    <ProjectReference Include="..\Cqrs.Connections.Dapper\Cqrs.Connections.Dapper.csproj">
+      <Project>{4342e57f-24ac-4edb-9728-25e6196071bf}</Project>
+      <Name>Cqrs.Connections.Dapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cqrs.Connections\Cqrs.Connections.csproj">
+      <Project>{db6abf96-d432-4424-ba7e-48098525efb6}</Project>
+      <Name>Cqrs.Connections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cqrs.Querying\Cqrs.Querying.csproj">
+      <Project>{050fe5b5-ee39-416e-84e6-ab13d9b1cac8}</Project>
+      <Name>Cqrs.Querying</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

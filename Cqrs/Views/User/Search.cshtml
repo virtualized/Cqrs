@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Cqrs.Application.Domain.User>
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var user in Model)
+{
+    <p>Name: @user.Name</p>
+    <p>Active: @user.Active</p>
+}
