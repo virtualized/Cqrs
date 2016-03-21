@@ -6,6 +6,12 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cqrs", "Cqrs\Cqrs.csproj", "{3A21D888-8212-4C77-AA3D-B2B9F8F3CDC2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{1CB187E1-32CC-4396-8ADE-778308EDE8BA}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cqrs.Querying", "Cqrs.Querying\Cqrs.Querying.csproj", "{050FE5B5-EE39-416E-84E6-AB13D9B1CAC8}"
 EndProject
