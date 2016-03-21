@@ -2,8 +2,6 @@
 using Cqrs.Infrastructure.Dapper;
 using SimpleInjector;
 using System.Configuration;
-using System.Linq;
-using System.Reflection;
 
 namespace Cqrs
 {
@@ -19,7 +17,8 @@ namespace Cqrs
         private static void RegisterQueryComponents(Container container)
         {
             container.Register<IDapperConnectionFactory, DapperConnectionFactory>();
-            container.Register(typeof(IQueryHandler<,>), new[] { typeof(IQueryHandler<,>).Assembly } );
+            container.Register(typeof(IQueryHandler<,>), new[] { typeof(IQueryHandler<,>).Assembly });
+            container.Register(typeof(IAsyncQueryHandler<,>), new[] { typeof(IAsyncQueryHandler<,>).Assembly });
         }
 
         private static void RegisterConfigurationComponents(Container container)

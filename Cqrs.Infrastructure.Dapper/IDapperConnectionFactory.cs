@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace Cqrs.Infrastructure.Dapper
 {
@@ -14,8 +15,9 @@ namespace Cqrs.Infrastructure.Dapper
     public interface IDapperConnection : IDisposable
     {
         void Open();
-        int Execute(string sql, object param = null, CommandType? commandType = default(CommandType));
-        IEnumerable<T> Query<T>(string sql, object param = null, CommandType? commandType = default(CommandType));
+        int Execute(string sql, object param = null, CommandType? commandType = default(CommandType?));
+        IEnumerable<T> Query<T>(string sql, object param = null, CommandType? commandType = default(CommandType?));
+        Task<IEnumerable<T>> QueryAsync<T>(string sql, object param = null, CommandType? commandType = default(CommandType?));
     }
 
     public class DapperConnectionFactory : IDapperConnectionFactory
@@ -59,6 +61,11 @@ namespace Cqrs.Infrastructure.Dapper
         public IEnumerable<T> Query<T>(string sql, object param = null, CommandType? commandType = 0)
         {
             return connection.Query<T>(sql, param, null, true, default(int?), commandType);
+        }
+
+        public Task<IEnumerable<T>> QueryAsync<T>(string sql, object param = null, CommandType? commandType = default(CommandType?))
+        {
+            return connection.QueryAsync<T>(sql, param, null, null, commandType);
         }
 
         public void Dispose(bool disposing)

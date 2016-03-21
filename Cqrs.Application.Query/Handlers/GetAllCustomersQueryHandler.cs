@@ -1,6 +1,7 @@
 ﻿using Cqrs.Application.Query.Queries;
 using Cqrs.Infrastructure.Dapper;
 using Cqrs.Infrastructure.Dto;
+using System.Threading.Tasks;
 
 namespace Cqrs.Application.Query.Handlers
 {
@@ -39,6 +40,26 @@ namespace Cqrs.Application.Query.Handlers
             {
                 connection.Open();
                 var customers = connection.Query<CustomerDto>("SELECT * FROM Customers WHERE Name LIKE @Name", new { Name = query.Name });
+                return new CustomersDto { Customers = customers };
+            }
+        }
+    }
+
+    public class GetCustomersByNameAsyncQueryHandler : IAsyncQueryHandler<GetCustomersByNameQuery, CustomersDto>
+    {
+        private readonly IDapperConnectionFactory factory;
+
+        public GetCustomersByNameAsyncQueryHandler(IDapperConnectionFactory factory)
+        {
+            this.factory = factory;
+        }
+
+        public async Task<CustomersDto> HandleAsync(GetCustomersByNameQuery query)
+        {
+            using (var con = factory.CreateConnection())
+            {
+                con.Open();
+                var customers = await con.QueryAsync<CustomerDto>("SELECT * FROM Customers WHERE Name LIKE @Name", new { Name = query.Name });
                 return new CustomersDto { Customers = customers };
             }
         }
